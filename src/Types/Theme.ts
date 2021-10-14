@@ -52,29 +52,6 @@ declare global {
       [key in PaletteColors]: string;
     };
     typography: typography;
-    icons: {
-      size: {
-        default: number;
-        sm: number;
-        md: number;
-        lg: number;
-      };
-    };
-    breakpoints: {
-      keys: BreakpointSize[];
-      values: {
-        xs: number;
-        sm: number;
-        md: number;
-        lg: number;
-        xl: number;
-      };
-      unit: string;
-      step: number;
-      up: (key: BreakpointSize) => string;
-      down: (key: BreakpointSize) => string;
-      between: (start: BreakpointSize, end: BreakpointSize) => string;
-    };
   };
 }
 export type typography = {

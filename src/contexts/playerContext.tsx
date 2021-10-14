@@ -1,7 +1,8 @@
 import React from "react";
-import { createContext, useEffect, useState, useContext } from "react";
-import MazeModel from "../models/MazeModel";
+import { createContext, useState, useContext } from "react";
+import { toast } from "react-toastify";
 import PlayerModel from "../models/PlayerModel";
+import { sendMovements } from "../requests/report";
 import useMaze from "./mazeContext";
 
 type PlayerContextProps = {};
@@ -11,6 +12,8 @@ const PlayerContext = createContext<
   | {
       player: PlayerModel;
       movePlayer: (position: PlayerModel["position"]) => void;
+      restartMoves: () => void;
+      sendTotalMoves: () => void;
       status: QueryStatus;
     }
   | undefined
@@ -47,12 +50,30 @@ export const PlayerContextProvider: React.FC<PlayerContextProps> = ({
     }));
   };
 
+  const restartMoves = () => {
+    setPlayer({
+      position: maze.start,
+      moves: 0,
+    });
+  };
+
+  const sendTotalMoves = async () => {
+    try {
+      await sendMovements(player.moves);
+      toast.success("Moves sent");
+    } catch {
+      toast.error("There was an error sending moves");
+    }
+  };
+
   /* Custom hook public interface */
   return (
     <PlayerContext.Provider
       value={{
         player,
         movePlayer,
+        restartMoves,
+        sendTotalMoves,
         status,
       }}
     >

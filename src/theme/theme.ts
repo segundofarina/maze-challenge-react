@@ -1,29 +1,3 @@
-import { BreakpointSize } from "../Types/Theme";
-
-const breakpoints: {
-  keys: BreakpointSize[];
-  values: {
-    xs: number;
-    sm: number;
-    md: number;
-    lg: number;
-    xl: number;
-  };
-  unit: string;
-  step: number;
-} = {
-  keys: ["xs", "sm", "md", "lg", "xl"],
-  values: {
-    xs: 0,
-    sm: 600,
-    md: 960,
-    lg: 1280,
-    xl: 1920,
-  },
-  unit: "px",
-  step: 5,
-};
-
 const theme: Theme = {
   palette: {
     black: "#262E32",
@@ -92,44 +66,6 @@ const theme: Theme = {
       "Helvetica Neue",
       "sans-serif",
     ].join(","),
-  },
-  icons: {
-    size: {
-      default: 24,
-      sm: 24,
-      md: 48,
-      lg: 60,
-    },
-  },
-  breakpoints: {
-    keys: breakpoints.keys,
-    values: breakpoints.values,
-    unit: breakpoints.unit,
-    step: breakpoints.step,
-    up: (key: BreakpointSize): string => {
-      const value: number =
-        typeof key === "number" ? key : breakpoints.values[key];
-      return `@media (min-width:${value}${breakpoints.unit})`;
-    },
-    down: (key: BreakpointSize) => {
-      const value: number = (() => {
-        if (typeof key === "number") return key;
-        return breakpoints.values[key];
-      })();
-      return `@media (max-width:${value - breakpoints.step / 100}${
-        breakpoints.unit
-      })`;
-    },
-    between: (start: BreakpointSize, end: BreakpointSize) => {
-      const endIndex = breakpoints.keys.indexOf(end) + 1;
-      if (endIndex === breakpoints.keys.length)
-        return theme.breakpoints.up(start);
-      return `@media (min-width:${breakpoints.values[start]}${
-        breakpoints.unit
-      }) and (max-width:${
-        breakpoints.values[breakpoints.keys[endIndex]] - breakpoints.step / 100
-      }${breakpoints.unit}`;
-    },
   },
 };
 export default theme;
