@@ -4,6 +4,6 @@ import App from "./App";
 
 test("renders app", () => {
   render(<App />);
-  const linkElement = screen.getByText(/Maze challenge /i);
-  expect(linkElement).toBeInTheDocument();
+  const headerElement = screen.getByText(/Maze challenge/i);
+  expect(headerElement).toBeInTheDocument();
 });

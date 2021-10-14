@@ -1,8 +1,10 @@
 import MazeModel from "../../models/MazeModel";
+import maze1 from "../../resources/mazes/maze1";
+import parseMaze from "../../utils/parseMaze";
 import { lookup } from "./solveMaze";
 
 describe("test solutions", () => {
-  it("should not find a solution", async () => {
+  it("should not find a solution", () => {
     const maze: MazeModel = {
       columns: 2,
       rows: 2,
@@ -27,7 +29,7 @@ describe("test solutions", () => {
     expect(solution).toBeUndefined();
   });
 
-  it("should  find a solution", async () => {
+  it("should  find a solution", () => {
     const maze: MazeModel = {
       columns: 2,
       rows: 2,
@@ -52,5 +54,16 @@ describe("test solutions", () => {
     expect(solution).toBeDefined();
 
     expect(solution?.length).toBe(3);
+  });
+
+  it("should find a solution", () => {
+    const maze = parseMaze(maze1);
+    const visited = maze.tiles.map((row) =>
+      row.map((tile) => tile.type === "wall")
+    );
+    const solution = lookup(maze, visited, maze.start);
+    expect(solution).toBeDefined();
+
+    expect(solution?.length).toBe(33);
   });
 });
