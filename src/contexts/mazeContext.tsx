@@ -4,12 +4,10 @@ import MazeModel, { Tile } from "../models/MazeModel";
 import maze1 from "../resources/mazes/maze1";
 
 type MazeContextProps = {};
-type QueryStatus = "idle" | "success" | "loading" | "error";
 
 const MazeContext = createContext<
   | {
       maze: MazeModel;
-      status: QueryStatus;
     }
   | undefined
 >(undefined);
@@ -55,14 +53,12 @@ export const MazeContextProvider: React.FC<MazeContextProps> = ({
   children,
 }) => {
   const [maze, setMaze] = useState<MazeModel>(parseMaze(maze1));
-  const [status, setStatus] = useState<QueryStatus>("idle");
 
   /* Custom hook public interface */
   return (
     <MazeContext.Provider
       value={{
         maze,
-        status,
       }}
     >
       {children}

@@ -7,9 +7,7 @@ const solveMaze = async (maze: MazeModel): Promise<Position[]> => {
   );
 
   const solution = lookup(maze, visited, maze.start);
-  console.log({ solution });
   if (!solution) {
-    console.log("no solution found");
     return Promise.reject();
   }
 

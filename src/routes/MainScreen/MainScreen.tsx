@@ -15,7 +15,7 @@ const useStyles = createUseStyles<
   Theme
 >(styles);
 
-const updateTimeInMs = 500;
+const updateTimeInMs = 200;
 
 const MainScreen: React.FC<MainScreenProps> = (props) => {
   const classes = useStyles();
