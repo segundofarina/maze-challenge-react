@@ -1,0 +1,9 @@
+.Select-root {
+  height: 40px;
+  padding: 8px;
+  background: #ffffff;
+  border: 1px solid #fafafa;
+  box-sizing: border-box;
+  box-shadow: 1px 4px 7px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
