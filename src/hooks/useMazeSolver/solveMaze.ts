@@ -14,7 +14,7 @@ const solveMaze = async (maze: MazeModel): Promise<Position[]> => {
   return solution;
 };
 
-const lookup = (
+export const lookup = (
   maze: MazeModel,
   visited: boolean[][],
   currentPos: Position

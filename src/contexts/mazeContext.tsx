@@ -1,5 +1,5 @@
 import React from "react";
-import { createContext, useEffect, useState, useContext } from "react";
+import { createContext, useState, useContext } from "react";
 import MazeModel, { Tile } from "../models/MazeModel";
 import maze1 from "../resources/mazes/maze1";
 
